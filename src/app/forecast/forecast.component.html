@@ -1,0 +1,23 @@
+<div *ngIf="forecast; else loading">
+ 
+    <h1>
+      {{forecast.city.name}} Forecast
+    </h1>
+
+    <table  [class]="'forecastTable'" >
+        <tr>
+            <td [class]="'forecastTable'" *ngFor="let list of forecast.list;">{{list.dt_txt| date: 'dd MMM yyyy'}}</td>
+        </tr>
+        <tr>
+            <td [class]="'forecastTable'" *ngFor="let list of forecast.list;">{{list.dt_txt| date: 'shortTime'}}</td>
+        </tr>
+        <tr>
+            <td [class]="'forecastTable'" *ngFor="let list of forecast.list;">
+                <div style="white-space:pre">{{list.weather[0].description}} </div> 
+                <div style="white-space:pre">Temp: {{list.main.temp}} F  </div> 
+              </td>
+        </tr>
+      </table>
+    
+  </div>
+  <ng-template #loading>Waiting for Glasgow forecast...</ng-template>
